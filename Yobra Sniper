@@ -1,21 +1,51 @@
-last_tick = get_last_tick()
-previous_tick = get_previous_tick()
-
-if last_tick[-2:] == '46' and previous_tick[-2:] == '44':
-    trade_differs(8)
-elif last_tick[-2:] == '24' and previous_tick[-2:] == '22':
-    trade_differs(6)
-elif last_tick[-2:] == '68' and previous_tick[-2:] == '66':
-    trade_differs(2)
-elif last_tick[-2:] == '82' and previous_tick[-2:] == '88':
-    trade_differs(4)
-elif last_tick[-2:] == '79' and previous_tick[-2:] == '77':
-    trade_differs(1)
-elif last_tick[-2:] == '91' and previous_tick[-2:] == '99':
-    trade_differs(3)
-elif last_tick[-2:] == '13' and previous_tick[-2:] == '11':
-    trade_differs(5)
-elif last_tick[-2:] == '35' and previous_tick[-2:] == '33':
-    trade_differs(7)
-elif last_tick[-2:] == '57' and previous_tick[-2:] == '55':
-    trade_differs(9)
+<block type="trade_definition_tradeoptions" id="tradeOptions" inline="false" x="20" y="20">
+    <field name="MARKET_LIST">Volatility Indices</field>
+    <field name="SUBMARKET_LIST">Volatility 10 (1s) Index</field>
+    <field name="TRADETYPECAT_LIST">Digit Matches</field>
+    <field name="TRADETYPE_LIST">Digit Differs</field>
+    <field name="DURATION_TYPE">ticks</field>
+    <field name="CURRENCY">USD</field>
+    <value name="AMOUNT">
+      <shadow type="math_number" id="amount">
+        <field name="NUM">10</field>
+      </shadow>
+    </value>
+    <value name="DURATION">
+      <shadow type="math_number" id="duration">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+  </block>
+  <block type="controls_if" id="conditionCheck" inline="false" x="20" y="150">
+    <value name="IF0">
+      <block type="logic_compare" id="checkLastTick">
+        <field name="OP">EQ</field>
+        <value name="A">
+          <block type="math_arithmetic" id="lastTick">
+            <field name="OP">MOD</field>
+            <value name="A">
+              <block type="ticking_lasttick" id="lastTickValue"></block>
+            </value>
+            <value name="B">
+              <shadow type="math_number" id="num46">
+                <field name="NUM">100</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+        <value name="B">
+          <shadow type="math_number" id="num44">
+            <field name="NUM">46</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+    <statement name="DO0">
+      <block type="trade_definition_tradeoptions" id="tradeDiffers8" inline="false">
+        <field name="MARKET_LIST">Volatility Indices</field>
+        <field name="SUBMARKET_LIST">Volatility 10 (1s) Index</field>
+        <field name="TRADETYPECAT_LIST">Digit Differs</field>
+        <field name="TRADETYPE_LIST">8</field>
+      </block>
+    </statement>
+    <!-- Repeat for other conditions -->
