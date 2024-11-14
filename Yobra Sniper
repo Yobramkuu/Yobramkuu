@@ -1,0 +1,21 @@
+last_tick = get_last_tick()
+previous_tick = get_previous_tick()
+
+if last_tick[-2:] == '46' and previous_tick[-2:] == '44':
+    trade_differs(8)
+elif last_tick[-2:] == '24' and previous_tick[-2:] == '22':
+    trade_differs(6)
+elif last_tick[-2:] == '68' and previous_tick[-2:] == '66':
+    trade_differs(2)
+elif last_tick[-2:] == '82' and previous_tick[-2:] == '88':
+    trade_differs(4)
+elif last_tick[-2:] == '79' and previous_tick[-2:] == '77':
+    trade_differs(1)
+elif last_tick[-2:] == '91' and previous_tick[-2:] == '99':
+    trade_differs(3)
+elif last_tick[-2:] == '13' and previous_tick[-2:] == '11':
+    trade_differs(5)
+elif last_tick[-2:] == '35' and previous_tick[-2:] == '33':
+    trade_differs(7)
+elif last_tick[-2:] == '57' and previous_tick[-2:] == '55':
+    trade_differs(9)
